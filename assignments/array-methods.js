@@ -56,28 +56,70 @@ const runners = [{"id":1,"first_name":"Charmain","last_name":"Seiler","email":"c
 // ==== Challenge 1: Use .forEach() ====
 // The event director needs both the first and last names of each runner for their running bibs.  Combine both the first and last names into a new array called fullName. 
 let fullName = [];
+runners.forEach(function(array) {
+    fullName.push(`${array.first_name} ${array.last_name}`);
+});
 console.log(fullName);
 
 // ==== Challenge 2: Use .map() ====
 // The event director needs to have all the runner's first names converted to uppercase because the director BECAME DRUNK WITH POWER. Convert each first name into all caps and log the result
 let allCaps = [];
+allCaps = runners.map(function(array){
+    return array.first_name.toUpperCase();
+})
 console.log(allCaps); 
 
 // ==== Challenge 3: Use .filter() ====
 // The large shirts won't be available for the event due to an ordering issue.  Get a list of runners with large sized shirts so they can choose a different size. Return an array named largeShirts that contains information about the runners that have a shirt size of L and log the result
 let largeShirts = [];
+for(let i = 0; i < runners.length; i++) {
+    function pushData() {
+        if (runners[i].shirt_size === "L") {
+            largeShirts.push(runners[i].first_name)
+        }
+    }
+    pushData()
+}
 console.log(largeShirts);
+
 
 // ==== Challenge 4: Use .reduce() ====
 // The donations need to be tallied up and reported for tax purposes. Add up all the donations into a ticketPriceTotal array and log the result
 let ticketPriceTotal = [];
+ticketPriceTotal = 0;
+for(let i = 0; i < runners.length; i++) {
+    ticketPriceTotal += runners[i].donation;
+}
 console.log(ticketPriceTotal);
 
 // ==== Challenge 5: Be Creative ====
 // Now that you have used .forEach(), .map(), .filter(), and .reduce().  I want you to think of potential problems you could solve given the data set and the 5k fun run theme.  Try to create and then solve 3 unique problems using one or many of the array methods listed above.
 
 // Problem 1
+// The event director wants to know which companies participated in the fun run so he can send out thank-you cards to them for participating. Make a list of the companies participating in a new array called companyParticipants.
+let companyParticipants = [];
+runners.forEach(function(array) {
+    companyParticipants.push(`${array.company_name}`);
+});
+console.log(companyParticipants);
 
 // Problem 2
+// The event director is going to send a gift basket to every company that donated at least $150. Make a list of companies who's donations were at least $150.
+let bigDonations = [];
+for(let i = 0; i < runners.length; i++) {
+    function pushData() {
+        if(runners[i].donation >= 150) {
+            bigDonations.push(runners[i].company_name);
+        }  
+    }
+    pushData();
+}
+console.log(bigDonations);
 
 // Problem 3
+// The event director has had a map of the route the runners will take during the fun run. Get a list of all of the email addresses so the map can be sent out to all of the runners.
+let emailList = [];
+runners.forEach(function(array) {
+    emailList.push(`${array.email}`);
+});
+console.log(emailList);
